@@ -15,6 +15,7 @@ RUN apt-get update \
 	php-cli php-zip php-gd php-curl php-mysql php-json \
 	php-mcrypt php-gmp php-xml php-mbstring \
 	gcc g++ openjdk-8-jre-headless openjdk-8-jdk ghc fp-compiler \
+	python python3 mono-mcs\
 	&& rm -rf /var/lib/apt/lists/*
 
 # Add chroot and judgehost data
