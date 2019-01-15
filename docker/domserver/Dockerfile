@@ -16,7 +16,7 @@ RUN apt-get update \
 	groff texlive-latex-recommended texlive-latex-extra \
 	texlive-fonts-recommended texlive-lang-european \
 	libcurl4-gnutls-dev libjsoncpp-dev libmagic-dev \
-	enscript lpr \
+	enscript lpr ca-certificates \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Set up user
@@ -45,6 +45,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 	MYSQL_DATABASE=domjudge \
 	MYSQL_PASSWORD=domjudge \
 	MYSQL_ROOT_PASSWORD=domjudge \
+	FPM_MAX_CHILDREN=40 \
 	DJ_DB_INSTALL_BARE=0
 
 # Install required packages for running of domserver

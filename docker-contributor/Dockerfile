@@ -8,6 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
   MYSQL_DATABASE=domjudge \
   MYSQL_PASSWORD=domjudge \
   MYSQL_ROOT_PASSWORD=domjudge \
+  FPM_MAX_CHILDREN=40 \
   DJ_SKIP_MAKE=0 \
   DJ_DB_INSTALL_BARE=0
 
@@ -28,7 +29,7 @@ RUN apt-get update \
     openjdk-8-jdk ghc fp-compiler \
     supervisor apache2-utils lsb-release \
     libcurl4-gnutls-dev libjsoncpp-dev libmagic-dev python python-pip \
-    enscript lpr \
+    enscript lpr ca-certificates \
     && pip install Pygments \
     && rm -rf /var/lib/apt/lists/*
 
@@ -50,6 +51,8 @@ RUN php composer-setup.php \
 
 # Add exposed volume
 VOLUME ["/domjudge"]
+
+WORKDIR /domjudge
 
 # Add scripts
 COPY ["scripts", "/scripts/"]

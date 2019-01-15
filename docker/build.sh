@@ -36,8 +36,19 @@ docker rmi domjudge/judgehost:${VERSION}-build
 docker build -t registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/judgehost:${VERSION} -f judgehost/Dockerfile .
 echo "[ok] Done building Docker image for judgehost"
 
+echo "[..] Building Docker image for judgehost chroot..."
+docker build -t registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/default-judgehost-chroot:${VERSION} -f judgehost/Dockerfile.chroot .
+echo "[ok] Done building Docker image for judgehost chroot"
+
 echo "All done. Image registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/domserver:${VERSION} and registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/judgehost:${VERSION} created"
 echo "If you are a DOMjudge maintainer with access to the HBO-I APC organization on DJ33 Gitlab, you can now run the following command to push them to Gitlab:"
-echo "$ docker push registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/domserver:${VERSION} && docker push registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/judgehost:${VERSION}"
+echo "$ docker push registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/domserver:${VERSION} && \
+docker push registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/judgehost:${VERSION} && \
+docker push registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/default-judgehost-chroot:${VERSION}"
 echo "If this is the latest release, also run the following command:"
-echo "$ docker tag registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/domserver:${VERSION} registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/domserver:latest && docker tag registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/judgehost:${VERSION} registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/judgehost:latest && docker push registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/domserver:latest && docker push registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/judgehost:latest"
+echo "$ docker tag registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/domserver:${VERSION} registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/domserver:latest && \
+docker tag registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/judgehost:${VERSION} registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/judgehost:latest && \
+docker tag registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/default-judgehost-chroot:${VERSION} registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/default-judgehost-chroot:latest && \
+docker push registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/domserver:latest && \
+docker push registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/judgehost:latest && \
+docker push registry.dj33.nl/error418/hbo-i_apc/domjudge-packaging/default-judgehost-chroot:latest"
