@@ -3,6 +3,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get -y install \
   ca-certificates default-jre-headless pypy locales \
   software-properties-common \
+  python3 python mono-mcs \
   && rm -rf /var/lib/apt/lists/*
 
 RUN chmod a-s \

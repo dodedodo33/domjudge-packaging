@@ -1,5 +1,5 @@
 #!/bin/bash
-/opt/domjudge/judgehost/bin/dj_make_chroot -i python,mono-mcs
+/opt/domjudge/judgehost/bin/dj_make_chroot -i python,python3,mono-mcs
 
 cd /
 tar -czvpf /chroot.tar.gz /chroot
